@@ -28,10 +28,10 @@ jobs:
           npm run build --if-present
 
       - name: Deploy to GitHub Pages
-          uses: JamesIves/github-pages-deploy-action@releases/v3
-          with:
-            ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-            # 部署到 gh-pages 分支
-            BRANCH: gh-pages
-            # 部署目录为 VuePress 的输出目录
-            FOLDER: public
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          # 部署到 gh-pages 分支
+          BRANCH: gh-pages
+          # 部署目录为 VuePress 的输出目录
+          FOLDER: public
