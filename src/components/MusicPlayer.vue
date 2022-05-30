@@ -46,6 +46,7 @@
 			</a>
 			<a class="button" :class="{'isDisabled':(currentSong==musicPlaylist.length-1)}" v-on:click="nextSong()" title="Next Song"><v-icon name="bi-skip-end-fill" class="icon" scale="2" /></a>
 		</div>
+		
 		<div class="timeAndProgress">
 			<div class="currentTimeContainer" style="text-align:center">
 				<span class="currentTime">{{ currentTimeShow }}</span>
