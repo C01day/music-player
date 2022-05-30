@@ -43,9 +43,8 @@ jobs:
         continue-on-error: true
         run: npm list
 
-      - run: |
-          npm install
-          npm build
+      - run: npm ci
+      - run: npm run build --if-present
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@releases/v3
