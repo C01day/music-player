@@ -1,5 +1,13 @@
 # music-player
 
+**简约的红黑配色播放器**
+
+# **[DEMO](https://music.c01day.com/)**
+
+![DEMO1](src/assets/img/DEMO1.png)
+
+![DEMO2](src/assets/img/DEMO2.png)
+
 ## Project setup
 ```
 npm install
@@ -20,5 +28,3 @@ npm run build
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
