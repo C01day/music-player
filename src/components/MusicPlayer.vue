@@ -1,5 +1,12 @@
 <template>
 <div id="box">
+	<a href="https://github.com/C01day/music-player" class="github-corner" aria-label="View source on GitHub">
+		<svg width="80" height="80" viewBox="0 0 250 250" style="fill:#FF0000; color:#FFF; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+			<path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+			<path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+			<path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+		</svg>
+	</a>
 	<div class="audioPlayer">
 		<a class="nav-icon" v-on:click="isPlaylistActive=!isPlaylistActive" :class="{'isActive': isPlaylistActive}" title="Music List">
 				<span></span>
@@ -81,6 +88,24 @@ export default {
 				currentSong: 0,
 				musicPlaylist: [
 					{
+						title: "Bluish Light",
+						artist: "塞壬唱片-MSR",
+						url: "http://music.163.com/song/media/outer/url?id=1941658812.mp3",
+						image: "https://web.hycdn.cn/siren/pic/20220503/6fbb2ddca4efb6bb4ff4ead791fb447e.jpg"
+					},
+					{
+						title: "Rapier",
+						artist: "塞壬唱片-MSR",
+						url: "http://music.163.com/song/media/outer/url?id=1941656969.mp3",
+						image: "https://web.hycdn.cn/siren/pic/20220502/b08a1ada5fa2a6937ae6c1208a40cb93.jpg"
+					},
+					{
+						title: "March On!",
+						artist: "塞壬唱片-MSR",
+						url: "http://music.163.com/song/media/outer/url?id=1936324213.mp3",
+						image: "https://web.hycdn.cn/siren/pic/20220413/784addeeb3f6bd9cd001e3021f3483da.jpg"
+					},
+					{
 						title: "Eternal Flame",
 						artist: "塞壬唱片-MSR",
 						url: "http://music.163.com/song/media/outer/url?id=1927441611.mp3",
@@ -91,6 +116,12 @@ export default {
 						artist: "塞壬唱片-MSR",
 						url: "http://music.163.com/song/media/outer/url?id=1890402858.mp3",
 						image: "https://web.hycdn.cn/siren/pic/20211101/733831c7d034b83dc78f783f8748cc65.jpg"
+					},
+					{
+						title: "Towards Her Light",
+						artist: "塞壬唱片-MSR",
+						url: "http://music.163.com/song/media/outer/url?id=1876956006.mp3",
+						image: "https://web.hycdn.cn/siren/pic/20210916/113f508e9ca2f66642cbb85e7a4699be.jpg"
 					},
 					{
 						title: "Immutable",
@@ -121,6 +152,30 @@ export default {
 						artist: "塞壬唱片-MSR",
 						url: "http://music.163.com/song/media/outer/url?id=1473615377.mp3",
 						image: "https://web.hycdn.cn/siren/pic/20210322/80c0cbb9bec652d21e939586e19aa9ed.jpg"
+					},
+					{
+						title: "Everything's Alright",
+						artist: "塞壬唱片-MSR",
+						url: "http://music.163.com/song/media/outer/url?id=1460626792.mp3",
+						image: "https://web.hycdn.cn/siren/pic/20210322/fe18ca43cbf7e7fc3541081d7a62ccef.jpg"
+					},
+					{
+						title: "Requiem",
+						artist: "塞壬唱片-MSR",
+						url: "http://music.163.com/song/media/outer/url?id=1444493780.mp3",
+						image: "https://web.hycdn.cn/siren/pic/20210322/14db9942c28a5abba48b9dfe2d99e39a.jpg"
+					},
+					{
+						title: "Renegade",
+						artist: "塞壬唱片-MSR",
+						url: "http://music.163.com/song/media/outer/url?id=1444493657.mp3",
+						image: "https://web.hycdn.cn/siren/pic/20210322/40a13076601806e37c5394049cebc5b1.jpg"
+					},
+					{
+						title: "故乡的风",
+						artist: "塞壬唱片-MSR",
+						url: "http://music.163.com/song/media/outer/url?id=1431593851.mp3",
+						image: "https://web.hycdn.cn/siren/pic/20210322/c755e05031749ec0d7422078ae3189e7.jpg"
 					},
 					{
 						title: "独行长路",
@@ -580,6 +635,21 @@ export default {
 		transform scaleY(0.3)
 	100% 
 		transform scaleY(0)
+
+.github-corner:hover .octo-arm
+	animation octocat-wave 560ms ease-in-out
+@keyframes octocat-wave
+	0%,100%
+		transform:rotate(0)
+	20%,60%
+		transform:rotate(-25deg)
+	40%,80%
+		transform:rotate(10deg)
+@media (max-width:500px)
+	.github-corner:hover .octo-arm
+		animation none
+	.github-corner .octo-arm
+		animation:octocat-wave 560ms ease-in-out
 
 @media (min-width: 719px)
 	.audioPlayerUI
