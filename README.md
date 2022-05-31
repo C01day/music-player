@@ -1,6 +1,10 @@
 # music-player
 
-**简约的红黑配色播放器**
+**简约的红黑配色播放器**😇🥰🤗
+
+**A simple music player component by `Vue`**
+
+**All the songs are about `Arknights`**
 
 # **[DEMO](https://music.c01day.com/)**
 
@@ -22,9 +26,3 @@ npm run serve
 ```
 npm run build
 ```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
