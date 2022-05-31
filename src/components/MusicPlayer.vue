@@ -47,11 +47,11 @@
 
 			<div class="playerButtons">
 				<a class="button" :class="{'isDisabled':(currentSong==0)}" v-on:click="prevSong()" title="Previous Song"><v-icon name="bi-skip-start-fill" class="icon" scale="2" /></a>
-				<a class="button play" v-on:click="playAudio()" title="Play/Pause Song">
-					<transition name="slide-fade" mode="out-in">
+				<transition name="fade" mode="out-in">
+					<a class="button play" v-on:click="playPauseAudio()" title="Play/Pause Song" :key="currentSong + currentlyPlaying">
 						<v-icon :name="currentlyStopped ? 'bi-play-circle-fill' : (currentlyPlaying ? 'hi-solid-pause' : 'bi-play-circle-fill')" :key="1" class="icon" scale="2" fill="red"/>
-					</transition>
-				</a>
+					</a>
+				</transition>
 				<a class="button" :class="{'isDisabled':(currentSong==musicPlaylist.length-1)}" v-on:click="nextSong()" title="Next Song"><v-icon name="bi-skip-end-fill" class="icon" scale="2" /></a>
 			</div>
 
@@ -193,7 +193,7 @@ export default {
 		};
 	},
 	mounted: function() {
-		this.changeSong();
+		this.changeSong(this.currentSong, false);
 		this.audio.loop = false;
 		
 	},
@@ -213,13 +213,13 @@ export default {
 		prevSong: function() {
 			if (this.currentSong > 0) this.changeSong(this.currentSong - 1);
 		},
-		changeSong: function(index) {
+		changeSong: function(index, pausePrev = true) {
 			var wasPlaying = this.currentlyPlaying;
 			this.imageLoaded = false;
-			if (index !== undefined) {
+			if (pausePrev == true) {
 				this.stopAudio();
-				this.currentSong = index;
 			}
+			this.currentSong = index;
 			this.audioFile = this.musicPlaylist[this.currentSong].url;
 			this.audio = new Audio(this.audioFile);
 			var localThis = this;
@@ -228,7 +228,7 @@ export default {
 			});
 			this.audio.addEventListener("ended", this.handleEnded);
 			if (wasPlaying) {
-				this.playAudio();
+				this.playPauseAudio();
 			}
 		},
 		isCurrentSong: function(index) {
@@ -240,27 +240,30 @@ export default {
 		getCurrentSong: function(currentSong) {
 			return this.musicPlaylist[currentSong].url;
 		},
-		playAudio: function() {
+		playPauseAudio: function() {
 			if (
 				this.currentlyStopped == true &&
 				this.currentSong + 1 == this.musicPlaylist.length
 			) {
+				this.currentlyStopped = false;
 				this.currentSong = 0;
-				this.changeSong();
+				this.changeSong(this.currentSong, false);
 			}
 			if (!this.currentlyPlaying) {
-				this.getCurrentTimeEverySecond();
-				this.currentlyPlaying = true;
-				this.audio.play();
+				this.playAudio();
 			} else {
 				this.stopAudio();
 			}
-			this.currentlyStopped = false;
+		},
+		playAudio: function() {
+			this.getCurrentTimeEverySecond();
+			this.currentlyPlaying = true;
+			this.audio.play();
 		},
 		stopAudio: function() {
 			this.audio.pause();
 			this.currentlyPlaying = false;
-			this.pausedMusic();
+			clearTimeout(this.checkingCurrentPositionInTrack);
 		},
 		handleEnded: function() {
 			if (this.currentSong + 1 == this.musicPlaylist.length) {
@@ -268,10 +271,8 @@ export default {
 				this.currentlyPlaying = false;
 				this.currentlyStopped = true;
 			} else {
-				this.currentlyPlaying = false;
 				this.currentSong++;
-				this.changeSong();
-				this.playAudio();
+				this.changeSong(this.currentSong);
 			}
 		},
 		onImageLoaded: function() {
@@ -289,11 +290,10 @@ export default {
 				1000
 			);
 		},
-		pausedMusic: function() {
-			clearTimeout(this.checkingCurrentPositionInTrack);
-		},
 		clickProgress: function(event){
-			this.stopAudio();
+			if(this.currentlyPlaying == true){
+				this.stopAudio();
+			}
 			this.updateBar(event.pageX);
 		},
 		updateBar: function(x){
@@ -310,7 +310,7 @@ export default {
 			this.audio.currentTime = (maxduration * percentage) / 100;
 			this.currentTime = this.audio.currentTime;
 			this.currentProgressBar = this.currentTime / this.trackDuration * 100;
-			this.playAudio();
+			this.playPauseAudio();
 		},
 	},
 	watch: {
