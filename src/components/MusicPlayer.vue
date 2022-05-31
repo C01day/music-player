@@ -227,6 +227,7 @@ export default {
 				localThis.trackDuration = Math.round(this.duration);
 			});
 			this.audio.addEventListener("ended", this.handleEnded);
+			if(this.currentlyStopped) this.currentlyStopped = false;
 			if (wasPlaying) {
 				this.playPauseAudio();
 			}
@@ -353,7 +354,7 @@ export default {
 	margin 0 auto
 	width 100%
 	height 100vh
-	padding 1.6rem
+	padding 0.5rem
 	.audioPlayer
 		position relative
 		width 100%

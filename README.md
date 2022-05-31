@@ -12,17 +12,26 @@
 
 ![DEMO2](src/assets/img/DEMO2.png)
 
+## Dependencies
+```
+npm install oh-vue-icons --save-dev
+
+<!-- It's optional if not support stylus -->
+npm install stylus --save-dev
+npm install stylus-loader --save-dev
+```
+
 ## Project setup
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+## Compiles and hot-reloads for development
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+## Compiles and minifies for production
 ```
 npm run build
 ```
