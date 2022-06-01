@@ -8,35 +8,35 @@
 		</svg>
 	</a>
 	<div class="audioPlayer">
-		<a class="nav-icon" v-on:click="isPlaylistActive=!isPlaylistActive" :class="{'isActive': isPlaylistActive}" title="Music List">
+		<a class="nav-icon" @click="isPlaylistActive=!isPlaylistActive" :class="{'isActive': isPlaylistActive}" title="Music List">
 				<span></span>
 				<span></span>
 				<span></span>
 		</a>
 		<div class="audioPlayerList" :class="{'isActive': isPlaylistActive}">
-			<div class="item" v-for="(item,index) in musicPlaylist" v-bind:class="{ 'isActive':isCurrentSong(index) }" v-on:click="changeSong(index),isPlaylistActive=!isPlaylistActive" :key="index">
+			<div class="item" v-for="(item,index) in musicPlaylist" :class="{ 'isActive':isCurrentSong(index) }" @click="changeSong(index),isPlaylistActive=!isPlaylistActive" :key="index">
 				<p class="title">{{ item.title }}</p>
 				<p class="artist">{{ item.artist }}</p>
 			</div>
 		</div>
 		<div class="audioPlayerUI" :class="{'isDisabled': isPlaylistActive}">
 			<div class="albumImage">
-				<transition name="fade" mode="out-in" type='transition'>
+				<transition name="fade" mode="out-in" type='transition' appear>
 					<div :class="['disc-back', currentlyPlaying ? '' : 'paused']" :key="currentSong">
 						<img @load="onImageLoaded()" src="../assets/img/disc.png" ondragstart="return false;" class="disc">
 						<!-- <img @load="onImageLoaded()" :src="musicPlaylist[currentSong].image" ondragstart="return false;" class="poster"> -->
 					</div>
 				</transition>
-				<div class="loader" :key="currentSong">Loading...</div>
+				<!-- <div class="loader" :key="currentSong">Loading...</div> -->
 			</div>
 			<div class="albumDetails">
-				<transition name="slide-fade" mode="out-in">
+				<transition name="slide-fade" mode="out-in" appear>
 					<p class="title" :key="currentSong">{{ musicPlaylist[currentSong].title }}</p>
 				</transition>
-				<transition name="slide-fade" mode="out-in">
+				<transition name="slide-fade" mode="out-in" appear>
 					<p class="artist" :key="currentSong">{{ musicPlaylist[currentSong].artist }}</p>
 				</transition>
-				<transition name="slide-fade" mode="out-in" type='transition'>
+				<transition name="slide-fade" mode="out-in" type='transition' appear>
 					<div class="page-container" :key="currentSong">
 						<div :class="['wave-container', currentlyPlaying ? '' : 'paused']">
 							<div v-for="index in 20" :key="index" class="wave-bar"></div>
@@ -46,13 +46,16 @@
 			</div>
 
 			<div class="playerButtons">
-				<a class="button" :class="{'isDisabled':(currentSong==0)}" v-on:click="prevSong()" title="Previous Song"><v-icon name="bi-skip-start-fill" class="icon" scale="2" /></a>
-				<transition name="fade" mode="out-in">
-					<a class="button play" v-on:click="playPauseAudio()" title="Play/Pause Song" :key="currentSong + currentlyPlaying">
-						<v-icon :name="currentlyStopped ? 'bi-play-circle-fill' : (currentlyPlaying ? 'hi-solid-pause' : 'bi-play-circle-fill')" :key="1" class="icon" scale="2" fill="red"/>
+				<a class="button" @click="prevSong()" title="Previous Song"><v-icon name="bi-skip-start-fill" class="icon" scale="2" /></a>
+				<transition name="fade" mode="out-in" appear>
+					<a class="button play" @click="playPauseAudio()" title="Play/Pause Song" :key="currentSong + currentlyPlaying">
+						<v-icon :name="currentlyPlaying ? 'hi-solid-pause' : 'bi-play-circle-fill' " :key="1" class="icon" scale="2" fill="red"/>
 					</a>
 				</transition>
-				<a class="button" :class="{'isDisabled':(currentSong==musicPlaylist.length-1)}" v-on:click="nextSong()" title="Next Song"><v-icon name="bi-skip-end-fill" class="icon" scale="2" /></a>
+				<a class="button" @click="nextSong()" title="Next Song"><v-icon name="bi-skip-end-fill" class="icon" scale="2" /></a>
+				<transition name="mode-slide-fade" mode="out-in">
+					<a class="button" id="mode" @click="nextMode()" :title="Mode[modeIndex].title" :key="modeIndex"><v-icon :name="Mode[modeIndex].icon" class="icon" scale="1.5" /></a>
+				</transition>
 			</div>
 
 			<div class="timeAndProgress">
@@ -79,13 +82,13 @@ export default {
 				audioFile: "",
 				imgLoaded: false,
 				currentlyPlaying: false,
-				currentlyStopped: false,
+				isPlaylistActive: false,
+				modeIndex: 0,
+				currentSong: 0,
 				currentTime: 0,
-				checkingCurrentPositionInTrack: "",
 				trackDuration: 0,
 				currentProgressBar: 0,
-				isPlaylistActive: false,
-				currentSong: 0,
+				checkingCurrentPositionInTrack: "",
 				musicPlaylist: [
 					{
 						title: "Bluish Light",
@@ -190,6 +193,20 @@ export default {
 						image: "https://web.hycdn.cn/siren/pic/20210322/56cbcd1d0093d8ee8ee22bf6d68ab4a6.jpg"
 					}
 				],
+				Mode: [
+					{
+						title: "顺序播放/Order Play",
+						icon: "ri-order-play-fill"
+					},
+					{
+						title: "随机播放/Shuffle Play",
+						icon: "ri-shuffle-fill"
+					},
+					{
+						title: "单曲循环/Single Cycle",
+						icon: "ri-repeat-one-fill"
+					},
+				],
 		};
 	},
 	mounted: function() {
@@ -203,15 +220,36 @@ export default {
 		}
 	},
 	methods: {
-		togglePlaylist: function() {
-			this.isPlaylistActive = !this.isPlaylistActive;
+		nextMode: function() {
+			this.modeIndex = (this.modeIndex + 1) % this.Mode.length;
+		},
+		nextIndex: function() {
+			switch (this.modeIndex) {
+				case 0:
+					this.currentSong = (this.currentSong + 1) % this.musicPlaylist.length;
+					break;
+				case 1:
+					this.currentSong = Math.floor(Math.random() * this.musicPlaylist.length);
+					break;
+			}
+			return this.currentSong;
+		},
+		prevIndex: function() {
+			switch (this.modeIndex) {
+				case 0:
+					this.currentSong = (this.currentSong - 1 + this.musicPlaylist.length) % this.musicPlaylist.length;
+					break;
+				case 1:
+					this.currentSong = Math.floor(Math.random() * this.musicPlaylist.length);
+					break;
+			}
+			return this.currentSong;
 		},
 		nextSong: function() {
-			if (this.currentSong < this.musicPlaylist.length - 1)
-				this.changeSong(this.currentSong + 1);
+			this.changeSong(this.nextIndex());
 		},
 		prevSong: function() {
-			if (this.currentSong > 0) this.changeSong(this.currentSong - 1);
+			this.changeSong(this.prevIndex());
 		},
 		changeSong: function(index, pausePrev = true) {
 			var wasPlaying = this.currentlyPlaying;
@@ -222,12 +260,11 @@ export default {
 			this.currentSong = index;
 			this.audioFile = this.musicPlaylist[this.currentSong].url;
 			this.audio = new Audio(this.audioFile);
-			var localThis = this;
+			var that = this;
 			this.audio.addEventListener("loadedmetadata", function() {
-				localThis.trackDuration = Math.round(this.duration);
+				that.trackDuration = Math.round(this.duration);
 			});
 			this.audio.addEventListener("ended", this.handleEnded);
-			if(this.currentlyStopped) this.currentlyStopped = false;
 			if (wasPlaying) {
 				this.playPauseAudio();
 			}
@@ -242,14 +279,6 @@ export default {
 			return this.musicPlaylist[currentSong].url;
 		},
 		playPauseAudio: function() {
-			if (
-				this.currentlyStopped == true &&
-				this.currentSong + 1 == this.musicPlaylist.length
-			) {
-				this.currentlyStopped = false;
-				this.currentSong = 0;
-				this.changeSong(this.currentSong, false);
-			}
 			if (!this.currentlyPlaying) {
 				this.playAudio();
 			} else {
@@ -267,27 +296,20 @@ export default {
 			clearTimeout(this.checkingCurrentPositionInTrack);
 		},
 		handleEnded: function() {
-			if (this.currentSong + 1 == this.musicPlaylist.length) {
-				this.stopAudio();
-				this.currentlyPlaying = false;
-				this.currentlyStopped = true;
-			} else {
-				this.currentSong++;
-				this.changeSong(this.currentSong);
-			}
+			this.changeSong(this.nextIndex());
 		},
 		onImageLoaded: function() {
 			this.imgLoaded = true;
 		},
 		getCurrentTimeEverySecond: function() {
-			var localThis = this;
+			var that = this;
 			this.checkingCurrentPositionInTrack = setTimeout(
 				function() {
-					localThis.currentTime = localThis.audio.currentTime;
-					localThis.currentProgressBar =
-						localThis.audio.currentTime / localThis.trackDuration * 100;
-					localThis.getCurrentTimeEverySecond();
-				}.bind(this),
+					that.currentTime = that.audio.currentTime;
+					that.currentProgressBar =
+						that.audio.currentTime / that.trackDuration * 100;
+					that.getCurrentTimeEverySecond();
+				},
 				1000
 			);
 		},
@@ -372,7 +394,7 @@ export default {
 		transform translate(-50%,-50%)
 		&:hover
 			border 1px solid transparent 
-			//transform translate(0px, -3px)
+			transform translate(-50%, -51%)
 			box-shadow 0 2px 16px 0 rgba(27, 35, 47, .2)
 		.nav-icon 
 			width 15px
@@ -446,7 +468,7 @@ export default {
 					padding-left 1rem
 		.audioPlayerUI 
 			margin-top 1.5rem
-			will-change transform, filter
+			will-change transform
 			transition 0.5s
 			&.isDisabled 
 				transform scale(0.75) translateX(50%)
@@ -543,8 +565,8 @@ export default {
 				margin 0 auto
 				text-align center
 				.button
-					font-size 2rem
 					display inline-block
+					position relative
 					vertical-align middle
 					padding 0.5rem
 					margin 0 0.25rem
@@ -554,9 +576,10 @@ export default {
 					text-decoration none
 					cursor pointer
 					transition 0.5s
+					&#mode
+						transition 0.3s ease-in-out
 					&.play
-						font-size 4rem
-						margin 0 1.5rem
+						margin 0 auto
 					&:active 
 						opacity 0.75
 						transform scale(0.75)
@@ -585,22 +608,27 @@ export default {
 	font-size 0.8rem
 	font-family Bender !important
 	color rgba(0, 0, 0, 0.75)
-.loader 
-	margin 60px auto
-	font-size 10px
-	position relative
-	text-indent -9999em
+
 .slide-fade-enter-active 
 	transition all 0.3s ease
 .slide-fade-leave-active 
 	transition all 0.2s cubic-bezier(1, 0.5, 0.8, 1)
-.slide-fade-enter, .slide-fade-leave-to 
+.slide-fade-enter-from, .slide-fade-leave-to 
 	transform translateY(10px)
 	opacity 0
 .fade-enter-active, .fade-leave-active 
 	transition opacity 0.5s
-.fade-enter, .fade-leave-to 
+.fade-enter-from, .fade-leave-to 
 	opacity 0
+
+.mode-slide-fade-enter-active, .mode-slide-fade-leave-active
+	transition all 0.1s ease
+.mode-slide-fade-enter-from, .mode-slide-fade-leave-active
+	opacity 0
+.mode-slide-fade-enter-from
+	transform translateY(10px)
+.mode-slide-fade-leave-active
+	transform translateY(-10px)
 
 ::-webkit-scrollbar
 	width 0 !important
