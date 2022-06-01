@@ -54,12 +54,12 @@
 				</transition>
 				<a class="button" @click="nextSong()" title="Next Song"><v-icon name="bi-skip-end-fill" class="icon" scale="2" /></a>
 				<transition name="mode-slide-fade" mode="out-in">
-					<a class="button" id="mode" @click="nextMode()" :title="Mode[modeIndex].title" :key="modeIndex"><v-icon :name="Mode[modeIndex].icon" class="icon" scale="1.5" /></a>
+					<a class="button" id="mode" @click="nextMode()" :title="Mode[modeIndex].title" :key="modeIndex"><v-icon :name="Mode[modeIndex].icon" class="icon" scale="1.2" /></a>
 				</transition>
 			</div>
 
 			<div class="timeAndProgress">
-				<div class="currentTimeContainer" style="text-align:center">
+				<div class="currentTimeContainer">
 					<span class="currentTime">{{ currentTimeShow }}</span>
 					<span class="totalTime"> {{ trackDurationShow }}</span>
 				</div>
@@ -622,7 +622,7 @@ export default {
 	opacity 0
 
 .mode-slide-fade-enter-active, .mode-slide-fade-leave-active
-	transition all 0.1s ease
+	transition all 0.3s ease
 .mode-slide-fade-enter-from, .mode-slide-fade-leave-active
 	opacity 0
 .mode-slide-fade-enter-from
