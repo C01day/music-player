@@ -2,25 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import { router } from './router'
 import { OhVueIcon, addIcons } from "oh-vue-icons";
-// import {
-//     BiSkipStartFill,
-//     BiSkipEndFill,
-//     BiPlayCircleFill,
-//     HiSolidPause,
-//     RiOrderPlayFill,
-//     RiShuffleFill,
-//     RiRepeatOneFill
-// } from "oh-vue-icons/icons";
 import * as Icons from "oh-vue-icons/icons";
-// addIcons(
-//     BiSkipStartFill,
-//     BiSkipEndFill,
-//     BiPlayCircleFill,
-//     HiSolidPause,
-//     RiOrderPlayFill,
-//     RiShuffleFill,
-//     RiRepeatOneFill
-// );
 const All = Object.values({ ...Icons });
 addIcons(...All);
 
