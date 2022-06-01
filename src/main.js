@@ -2,29 +2,29 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import { router } from './router'
 import { OhVueIcon, addIcons } from "oh-vue-icons";
-// import * as Icons from "oh-vue-icons/icons";
-// const All = Object.values({ ...Icons });
-// addIcons(...All);
+import * as Icons from "oh-vue-icons/icons";
+const All = Object.values({ ...Icons });
+addIcons(...All);
 
-import {
-    BiSkipStartFill,
-    BiSkipEndFill,
-    BiPlayCircleFill,
-    HiSolidPause,
-    RiOrderPlayFill,
-    RiShuffleFill,
-    RiRepeatOneFill
-} from "oh-vue-icons/icons";
+// import {
+//     BiSkipStartFill,
+//     BiSkipEndFill,
+//     BiPlayCircleFill,
+//     HiSolidPause,
+//     RiOrderPlayFill,
+//     RiShuffleFill,
+//     RiRepeatOneFill
+// } from "oh-vue-icons/icons";
 
-addIcons(
-    BiSkipStartFill,
-    BiSkipEndFill,
-    BiPlayCircleFill,
-    HiSolidPause,
-    RiOrderPlayFill,
-    RiShuffleFill,
-    RiRepeatOneFill
-);
+// addIcons(
+//     BiSkipStartFill,
+//     BiSkipEndFill,
+//     BiPlayCircleFill,
+//     HiSolidPause,
+//     RiOrderPlayFill,
+//     RiShuffleFill,
+//     RiRepeatOneFill
+// );
 
 // router.beforeEach((to, from, next)=>{
 //     if(to.meta.content) {     //路由发生变化时候修改meta
