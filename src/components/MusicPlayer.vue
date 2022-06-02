@@ -24,7 +24,7 @@
 				<transition name="fade" mode="out-in" type='transition' appear>
 					<div :class="['disc-back', currentlyPlaying ? '' : 'paused']" :key="currentSong">
 						<img @load="onImageLoaded()" src="../assets/img/disc.png" ondragstart="return false;" class="disc">
-						<!-- <img @load="onImageLoaded()" :src="musicPlaylist[currentSong].image" ondragstart="return false;" class="poster"> -->
+						<img @load="onImageLoaded()" :src="musicPlaylist[currentSong].image" ondragstart="return false;" class="poster">
 					</div>
 				</transition>
 				<!-- <div class="loader" :key="currentSong">Loading...</div> -->
@@ -632,9 +632,8 @@ export default {
 
 ::-webkit-scrollbar
 	width 0 !important
-::-webkit-scrollbar
-	width 0 !important
 	height 0
+	display none
 
 @keyframes rotate 
 	from
