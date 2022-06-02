@@ -1,10 +1,10 @@
 # music-player
 
-![Frame](https://img.shields.io/badge/Frame-Vue-yellow?style=for-the-badge)
+![Frame](https://img.shields.io/badge/Frame-Vue3-yellow?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-red?style=for-the-badge)
 [![Dependencies](https://img.shields.io/badge/Dependencies-oh--vue--icons-blue?style=for-the-badge)](https://oh-vue-icons.js.org/)
 
-![GitHub deployments](https://img.shields.io/github/deployments/C01day/music-player/production?style=for-the-badge&label=Deploy)
+[![GitHub deployments](https://img.shields.io/github/deployments/C01day/music-player/production?style=for-the-badge&label=Deploy)](https://music.c01day.com/)
 [![Deploy](https://img.shields.io/badge/Deployed%20by%20Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/)
 
 **简约的红黑配色播放器**😇🥰🤗
