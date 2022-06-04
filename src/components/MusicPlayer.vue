@@ -97,12 +97,6 @@ export default {
 						image: "https://web.hycdn.cn/siren/pic/20220520/e5cc4eff1a6b7ebd69072470238b5fe2.jpg"
 					},
 					{
-						title: "愚人曲",
-						artist: "塞壬唱片-MSR",
-						url: "http://music.163.com/song/media/outer/url?id=1945307649.mp3",
-						image: "https://web.hycdn.cn/siren/pic/20220509/60c48c2cd057afb6d4dcd65cae5c3fe9.jpg"
-					},
-					{
 						title: "Bluish Light",
 						artist: "塞壬唱片-MSR",
 						url: "http://music.163.com/song/media/outer/url?id=1941658812.mp3",
@@ -115,6 +109,12 @@ export default {
 						image: "https://web.hycdn.cn/siren/pic/20220502/b08a1ada5fa2a6937ae6c1208a40cb93.jpg"
 					},
 					{
+						title: "Awaken",
+						artist: "塞壬唱片-MSR",
+						url: "http://music.163.com/song/media/outer/url?id=1941653825.mp3",
+						image: "https://web.hycdn.cn/siren/pic/20220501/7c4d1d285ef83744b167bbdadb29d239.jpg"
+					},
+					{
 						title: "March On!",
 						artist: "塞壬唱片-MSR",
 						url: "http://music.163.com/song/media/outer/url?id=1936324213.mp3",
@@ -125,6 +125,18 @@ export default {
 						artist: "塞壬唱片-MSR",
 						url: "http://music.163.com/song/media/outer/url?id=1927441611.mp3",
 						image: "https://web.hycdn.cn/siren/pic/20220314/a79347b6d2e3a57874b552699ce9ee2c.jpg"
+					},
+					{
+						title: "Operation Dawnseeker",
+						artist: "塞壬唱片-MSR",
+						url: "http://music.163.com/song/media/outer/url?id=1922637266.mp3",
+						image: "https://web.hycdn.cn/siren/pic/20220225/78ad118924912a39738aaeaf252be1a6.jpg"
+					},
+					{
+						title: "Operation Lead Seal",
+						artist: "塞壬唱片-MSR",
+						url: "http://music.163.com/song/media/outer/url?id=1893260974.mp3",
+						image: "https://web.hycdn.cn/siren/pic/20211109/e72022facca61c0ddfb0ab82c8e515b7.jpg"
 					},
 					{
 						title: "Radiant",
@@ -145,16 +157,22 @@ export default {
 						image: "https://web.hycdn.cn/siren/pic/20210501/01bdad2a0a6876eaee3c23bf0812a73a.png"
 					},
 					{
-						title: "Stay Gold",
+						title: "Operation Blade",
 						artist: "塞壬唱片-MSR",
-						url: "http://music.163.com/song/media/outer/url?id=1488275299.mp3",
-						image: "https://web.hycdn.cn/siren/pic/20210322/430cb5399e272d97779cf5f13681628f.jpg"
+						url: "http://music.163.com/song/media/outer/url?id=1832392174.mp3",
+						image: "https://web.hycdn.cn/siren/pic/20210325/923286f4ab26284016de9ed03150fad7.jpg"
 					},
 					{
 						title: "Lullabye",
 						artist: "塞壬唱片-MSR",
 						url: "http://music.163.com/song/media/outer/url?id=1491503292.mp3",
 						image: "https://web.hycdn.cn/siren/pic/20210322/5fb9a7a5d2045c5c6a16f2c4ed8e08f4.jpg"
+					},
+					{
+						title: "Stay Gold",
+						artist: "塞壬唱片-MSR",
+						url: "http://music.163.com/song/media/outer/url?id=1488275299.mp3",
+						image: "https://web.hycdn.cn/siren/pic/20210322/430cb5399e272d97779cf5f13681628f.jpg"
 					},
 					{
 						title: "Alive",
