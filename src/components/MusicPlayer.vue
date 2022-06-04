@@ -91,6 +91,18 @@ export default {
 				checkingCurrentPositionInTrack: "",
 				musicPlaylist: [
 					{
+						title: "Operation Deepness",
+						artist: "塞壬唱片-MSR",
+						url: "http://music.163.com/song/media/outer/url?id=1948689820.mp3",
+						image: "https://web.hycdn.cn/siren/pic/20220520/e5cc4eff1a6b7ebd69072470238b5fe2.jpg"
+					},
+					{
+						title: "愚人曲",
+						artist: "塞壬唱片-MSR",
+						url: "http://music.163.com/song/media/outer/url?id=1945307649.mp3",
+						image: "https://web.hycdn.cn/siren/pic/20220509/60c48c2cd057afb6d4dcd65cae5c3fe9.jpg"
+					},
+					{
 						title: "Bluish Light",
 						artist: "塞壬唱片-MSR",
 						url: "http://music.163.com/song/media/outer/url?id=1941658812.mp3",
