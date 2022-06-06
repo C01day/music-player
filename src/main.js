@@ -1,8 +1,9 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import { router } from './router'
-import { OhVueIcon, addIcons } from "oh-vue-icons";
-
+import { OhVueIcon, addIcons } from "oh-vue-icons"
+import axios from 'axios'
+import { jsonp } from 'vue-jsonp'
 // import * as Icons from "oh-vue-icons/icons";
 // const All = Object.values({ ...Icons });
 // addIcons(...All);
@@ -44,4 +45,6 @@ addIcons(
 const app = createApp(App);
 app.use(router);
 app.component("v-icon", OhVueIcon);
+app.config.globalProperties.axios = axios;
+app.config.globalProperties.jsonp = jsonp;
 app.mount("#app");
