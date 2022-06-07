@@ -88,7 +88,6 @@ export default {
 				lyricIndex: -1,
 				lyricHeight: [],
 				lyricHeightUpdateTime: 3,
-				audioFile: "",
 				imgLoaded: false,
 				currentlyPlaying: false,
 				isPlaylistActive: false,
@@ -101,158 +100,136 @@ export default {
 				// itemRefs: [],
 				musicPlaylist: [
 					{
+						id: "1948689820",
 						title: "Operation Deepness",
 						artist: "塞壬唱片-MSR",
-						url: "http://music.163.com/song/media/outer/url?id=1948689820.mp3",
 						image: "https://web.hycdn.cn/siren/pic/20220520/e5cc4eff1a6b7ebd69072470238b5fe2.jpg",
-						lyric: "http://music.163.com/api/song/media?id=1948689820"
 					},
 					{
+						id: "1941658812",
 						title: "Bluish Light",
 						artist: "塞壬唱片-MSR",
-						url: "http://music.163.com/song/media/outer/url?id=1941658812.mp3",
 						image: "https://web.hycdn.cn/siren/pic/20220503/6fbb2ddca4efb6bb4ff4ead791fb447e.jpg",
-						lyric: "http://music.163.com/api/song/media?id=1941658812"
 					},
 					{
+						id: "1941656969",
 						title: "Rapier",
 						artist: "塞壬唱片-MSR",
-						url: "http://music.163.com/song/media/outer/url?id=1941656969.mp3",
 						image: "https://web.hycdn.cn/siren/pic/20220502/b08a1ada5fa2a6937ae6c1208a40cb93.jpg",
-						lyric: "http://music.163.com/api/song/media?id=1941656969"
 					},
 					{
+						id: "1941653825",
 						title: "Awaken",
 						artist: "塞壬唱片-MSR",
-						url: "http://music.163.com/song/media/outer/url?id=1941653825.mp3",
 						image: "https://web.hycdn.cn/siren/pic/20220501/7c4d1d285ef83744b167bbdadb29d239.jpg",
-						lyric: "http://music.163.com/api/song/media?id=1941653825"
 					},
 					{
+						id: "1936324213",
 						title: "March On!",
 						artist: "塞壬唱片-MSR",
-						url: "http://music.163.com/song/media/outer/url?id=1936324213.mp3",
 						image: "https://web.hycdn.cn/siren/pic/20220413/784addeeb3f6bd9cd001e3021f3483da.jpg",
-						lyric: "http://music.163.com/api/song/media?id=1936324213"
 					},
 					{
+						id: "1927441611",
 						title: "Eternal Flame",
 						artist: "塞壬唱片-MSR",
-						url: "http://music.163.com/song/media/outer/url?id=1927441611.mp3",
 						image: "https://web.hycdn.cn/siren/pic/20220314/a79347b6d2e3a57874b552699ce9ee2c.jpg",
-						lyric: "http://music.163.com/api/song/media?id=1927441611"
 					},
 					{
+						id: "1922637266",
 						title: "Operation Dawnseeker",
 						artist: "塞壬唱片-MSR",
-						url: "http://music.163.com/song/media/outer/url?id=1922637266.mp3",
 						image: "https://web.hycdn.cn/siren/pic/20220225/78ad118924912a39738aaeaf252be1a6.jpg",
-						lyric: "http://music.163.com/api/song/media?id=1922637266"
 					},
 					{
+						id: "1893260974",
 						title: "Operation Lead Seal",
 						artist: "塞壬唱片-MSR",
-						url: "http://music.163.com/song/media/outer/url?id=1893260974.mp3",
 						image: "https://web.hycdn.cn/siren/pic/20211109/e72022facca61c0ddfb0ab82c8e515b7.jpg",
-						lyric: "http://music.163.com/api/song/media?id=1893260974"
 					},
 					{
+						id: "1890402858",
 						title: "Radiant",
 						artist: "塞壬唱片-MSR",
-						url: "http://music.163.com/song/media/outer/url?id=1890402858.mp3",
 						image: "https://web.hycdn.cn/siren/pic/20211101/733831c7d034b83dc78f783f8748cc65.jpg",
-						lyric: "http://music.163.com/api/song/media?id=1890402858"
 					},
 					{
+						id: "1876956006",
 						title: "Towards Her Light",
 						artist: "塞壬唱片-MSR",
-						url: "http://music.163.com/song/media/outer/url?id=1876956006.mp3",
 						image: "https://web.hycdn.cn/siren/pic/20210916/113f508e9ca2f66642cbb85e7a4699be.jpg",
-						lyric: "http://music.163.com/api/song/media?id=1876956006"
 					},
 					{
+						id: "1840976599",
 						title: "Immutable",
 						artist: "塞壬唱片-MSR",
-						url: "http://music.163.com/song/media/outer/url?id=1840976599.mp3",
 						image: "https://web.hycdn.cn/siren/pic/20210501/01bdad2a0a6876eaee3c23bf0812a73a.png",
-						lyric: "http://music.163.com/api/song/media?id=1840976599"
 					},
 					{
+						id: "1832392174",
 						title: "Operation Blade",
 						artist: "塞壬唱片-MSR",
-						url: "http://music.163.com/song/media/outer/url?id=1832392174.mp3",
 						image: "https://web.hycdn.cn/siren/pic/20210325/923286f4ab26284016de9ed03150fad7.jpg",
-						lyric: "http://music.163.com/api/song/media?id=1832392174"
 					},
 					{
+						id: "1491503292",
 						title: "Lullabye",
 						artist: "塞壬唱片-MSR",
-						url: "http://music.163.com/song/media/outer/url?id=1491503292.mp3",
 						image: "https://web.hycdn.cn/siren/pic/20210322/5fb9a7a5d2045c5c6a16f2c4ed8e08f4.jpg",
-						lyric: "http://music.163.com/api/song/media?id=1491503292"
 					},
 					{
+						id: "1488275299",
 						title: "Stay Gold",
 						artist: "塞壬唱片-MSR",
-						url: "http://music.163.com/song/media/outer/url?id=1488275299.mp3",
 						image: "https://web.hycdn.cn/siren/pic/20210322/430cb5399e272d97779cf5f13681628f.jpg",
-						lyric: "http://music.163.com/api/song/media?id=1488275299"
 					},
 					{
+						id: "1473615924",
 						title: "Alive",
 						artist: "塞壬唱片-MSR",
-						url: "http://music.163.com/song/media/outer/url?id=1473615924.mp3",
 						image: "https://web.hycdn.cn/siren/pic/20210322/7d9ab6167720f8f4b982c83fbe89ce0b.jpg",
-						lyric: "http://music.163.com/api/song/media?id=1473615924"
 					},
 					{
+						id: "1473615377",
 						title: "Evolutionary Mechanization",
 						artist: "塞壬唱片-MSR",
-						url: "http://music.163.com/song/media/outer/url?id=1473615377.mp3",
 						image: "https://web.hycdn.cn/siren/pic/20210322/80c0cbb9bec652d21e939586e19aa9ed.jpg",
-						lyric: "http://music.163.com/api/song/media?id=1473615377"
 					},
 					{
+						id: "1460626792",
 						title: "Everything's Alright",
 						artist: "塞壬唱片-MSR",
-						url: "http://music.163.com/song/media/outer/url?id=1460626792.mp3",
 						image: "https://web.hycdn.cn/siren/pic/20210322/fe18ca43cbf7e7fc3541081d7a62ccef.jpg",
-						lyric: "http://music.163.com/api/song/media?id=1460626792"
 					},
 					{
+						id: "1444493780",
 						title: "Requiem",
 						artist: "塞壬唱片-MSR",
-						url: "http://music.163.com/song/media/outer/url?id=1444493780.mp3",
 						image: "https://web.hycdn.cn/siren/pic/20210322/14db9942c28a5abba48b9dfe2d99e39a.jpg",
-						lyric: "http://music.163.com/api/song/media?id=1444493780"
 					},
 					{
+						id: "1444493657",
 						title: "Renegade",
 						artist: "塞壬唱片-MSR",
-						url: "http://music.163.com/song/media/outer/url?id=1444493657.mp3",
 						image: "https://web.hycdn.cn/siren/pic/20210322/40a13076601806e37c5394049cebc5b1.jpg",
-						lyric: "http://music.163.com/api/song/media?id=1444493657"
 					},
 					{
+						id: "1431593851",
 						title: "故乡的风",
 						artist: "塞壬唱片-MSR",
-						url: "http://music.163.com/song/media/outer/url?id=1431593851.mp3",
 						image: "https://web.hycdn.cn/siren/pic/20210322/c755e05031749ec0d7422078ae3189e7.jpg",
-						lyric: "http://music.163.com/api/song/media?id=1431593851"
 					},
 					{
+						id: "1427681638",
 						title: "独行长路",
 						artist: "塞壬唱片-MSR",
-						url: "http://music.163.com/song/media/outer/url?id=1427681638.mp3",
 						image: "https://web.hycdn.cn/siren/pic/20210727/d01c9b65184c11ed6fe7b1019a023b16.jpg",
-						lyric: "http://music.163.com/api/song/media?id=1427681638"
 					},
 					{
+						id: "1403774122",
 						title: "Speed of Light",
 						artist: "塞壬唱片-MSR",
-						url: "http://music.163.com/song/media/outer/url?id=1403774122.mp3",
 						image: "https://web.hycdn.cn/siren/pic/20210322/56cbcd1d0093d8ee8ee22bf6d68ab4a6.jpg",
-						lyric: "http://music.163.com/api/song/media?id=1403774122"
 					}
 				],
 				Mode: [
@@ -360,9 +337,11 @@ export default {
 				this.stopAudio();
 			}
 			this.currentSong = index;
-			this.audioFile = this.musicPlaylist[this.currentSong].url;
-			this.audio = new Audio(this.audioFile);
-			this.formatLyric(this.musicPlaylist[this.currentSong].lyric);
+			var audioFile = "http://music.163.com/song/media/outer/url?id=" + 
+								this.musicPlaylist[this.currentSong].id + ".mp3";
+			this.audio = new Audio(audioFile);
+			var lyricFile = "http://music.163.com/api/song/media?id=" + this.musicPlaylist[this.currentSong].id;
+			this.formatLyric(lyricFile);
 			var that = this;
 			this.audio.addEventListener("loadedmetadata", function() {
 				that.trackDuration = Math.round(this.duration);
@@ -377,9 +356,6 @@ export default {
 				return true;
 			}
 			return false;
-		},
-		getCurrentSong: function(currentSong) {
-			return this.musicPlaylist[currentSong].url;
 		},
 		playPauseAudio: function() {
 			if (!this.currentlyPlaying) {
