@@ -19,6 +19,8 @@
 
 ![DEMO2](src/assets/img/DEMO2.png)
 
+![DEMO3](src/assets/img/DEMO3.png)
+
 ## Project setup
 ```
 npm install
