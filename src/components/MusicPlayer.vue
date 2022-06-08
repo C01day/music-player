@@ -18,8 +18,8 @@
 			<div class="albumImage">
 				<transition name="fade" mode="out-in" type='transition' appear>
 					<div :class="['disc-back', currentlyPlaying ? '' : 'paused']" :key="currentSong">
-						<img @load="onImageLoaded()" src="../assets/img/disc.png" ondragstart="return false;" class="disc">
-						<img @load="onImageLoaded()" :src="musicPlaylist[currentSong].image" ondragstart="return false;" class="poster">
+						<img src="../assets/img/disc.png" ondragstart="return false;" class="disc">
+						<img v-if="posterLoad" :src="musicPlaylist[currentSong].image" ondragstart="return false;" class="poster">
 					</div>
 				</transition>
 				<!-- <div class="loader" :key="currentSong">Loading...</div> -->
@@ -37,9 +37,9 @@
 							<div v-for="index in 20" :key="index" class="wave-bar"></div>
 						</div>
 						<div class="lyric-container-wrapper">
-						<div :class="['lyric-container', currentlyPlaying ? '' : 'paused']" :style="{ transform: 'translateY(' + lyricHeight[Math.max(lyricIndex, 0)] + 'px)'}">
-							<div v-for="(item, index) in lyric" :key="index" :class="['lyric-item', {'isActive': (index==lyricIndex)}]">{{item.text}}</div>
-						</div>
+							<div :class="['lyric-container', currentlyPlaying ? '' : 'paused']" :style="{ transform: 'translateY(' + lyricHeight[Math.max(lyricIndex, 0)] + 'px)'}">
+								<div v-for="(item, index) in lyric" :key="index" :class="['lyric-item', {'isActive': (index==lyricIndex)}]">{{item.text}}</div>
+							</div>
 						</div>
 					</div>
 				</transition>
@@ -87,7 +87,7 @@ export default {
 				lyricIndex: -1,
 				lyricHeight: [],
 				lyricHeightUpdateTime: 3,
-				imgLoaded: false,
+				posterLoad: false,
 				currentlyPlaying: false,
 				isPlaylistActive: false,
 				modeIndex: 0,
@@ -247,10 +247,6 @@ export default {
 				],
 		};
 	},
-	mounted: function() {
-		this.changeSong(this.currentSong, false);
-		this.audio.loop = false;
-	},
 	methods: {
 		timeFormat: function(s) {
 			return (s - (s %= 60)) / 60 + (9 < s ? ":" : ":0") + s;
@@ -331,16 +327,21 @@ export default {
 		},
 		changeSong: function(index, pausePrev = true) {
 			var wasPlaying = this.currentlyPlaying;
-			this.imageLoaded = false;
 			if (pausePrev == true) {
 				this.stopAudio();
 			}
 			this.currentSong = index;
+
 			var audioFile = "http://music.163.com/song/media/outer/url?id=" + 
 								this.musicPlaylist[this.currentSong].id + ".mp3";
 			this.audio = new Audio(audioFile);
+
 			var lyricFile = "http://music.163.com/api/song/media?id=" + this.musicPlaylist[this.currentSong].id;
 			this.formatLyric(lyricFile);
+
+			this.posterLoad = false;
+			if(this.musicPlaylist[this.currentSong].image !== undefined) this.posterLoad = true;
+
 			var that = this;
 			this.audio.addEventListener("loadedmetadata", function() {
 				that.trackDuration = Math.round(this.duration);
@@ -376,9 +377,6 @@ export default {
 		handleEnded: function() {
 			this.changeSong(this.nextIndex());
 		},
-		onImageLoaded: function() {
-			this.imgLoaded = true;
-		},
 		getCurrentTimeEverySecond: function() {
 			var that = this;
 			this.checkingCurrentPositionInTrack = setTimeout(
@@ -387,7 +385,7 @@ export default {
 					that.currentProgressBar =
 						that.audio.currentTime / that.trackDuration * 100;
 					that.getCurrentTimeEverySecond();
-				},
+				}.bind(this),
 				1000
 			);
 		},
@@ -431,6 +429,10 @@ export default {
 			}
 			console.log(this.lyricHeight[this.lyricHeight.length-1])
 		},
+	},
+	mounted() {
+		this.changeSong(this.currentSong, false);
+		this.audio.loop = false;
 	},
 	beforeUpdate() {
     	// this.itemRefs = [];
