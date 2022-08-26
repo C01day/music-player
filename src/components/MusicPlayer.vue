@@ -99,6 +99,18 @@ export default {
 				// itemRefs: [],
 				musicPlaylist: [
 					{
+						id: "1975296386",
+						title: "Operation Ashring",
+						artist: "塞壬唱片-MSR",
+						image: "https://web.hycdn.cn/siren/pic/20220826/5dff26633eccf4654a47098f0f45387f.jpg",
+					},
+					{
+						id: "1971052096",
+						title: "Undertopia",
+						artist: "塞壬唱片-MSR",
+						image: "https://web.hycdn.cn/siren/pic/20220811/3de44c2c9bd878319779fd5c6f870bab.jpg",
+					},
+					{
 						id: "1948689820",
 						title: "Operation Deepness",
 						artist: "塞壬唱片-MSR",
@@ -421,7 +433,7 @@ export default {
 			this.lyricHeight = [];
 			for(var i = 0; i < this.lyric.length; i++){
 				if(i == 0){
-					this.lyricHeight.push(lyricWrapper.getBoundingClientRect().height*0.4);
+					this.lyricHeight.push(lyricWrapper.getBoundingClientRect().height*0.42);
 					continue;
 				}
 				this.lyricHeight.push(this.lyricHeight[i-1] -
