@@ -99,6 +99,12 @@ export default {
 				// itemRefs: [],
 				musicPlaylist: [
 					{
+						id: "1978870845",
+						title: "Ensheath",
+						artist: "塞壬唱片-MSR",
+						image: "https://web.hycdn.cn/siren/pic/20220907/f4fbe128f184c617df3c597bcefb6687.jpg",
+					},
+					{
 						id: "1975296386",
 						title: "Operation Ashring",
 						artist: "塞壬唱片-MSR",
