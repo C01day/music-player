@@ -99,6 +99,21 @@ export default {
 				// itemRefs: [],
 				musicPlaylist: [
 					{
+						id: "464674427",
+						title: "Symphony",
+						artist: "Zara Larsson / Clean Bandit",
+					},
+					{
+						id: "1927389937",
+						title: "Bones",
+						artist: "Imagine Dragons",
+					},
+					{
+						id: "28068202",
+						title: "Carol of the Bells",
+						artist: "Pentatonix",
+					},
+					{
 						id: "1978870845",
 						title: "Ensheath",
 						artist: "塞壬唱片-MSR",
