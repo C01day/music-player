@@ -99,19 +99,28 @@ export default {
 				// itemRefs: [],
 				musicPlaylist: [
 					{
-						id: "464674427",
-						title: "Symphony",
-						artist: "Zara Larsson / Clean Bandit",
+						id: "2006550948",
+						title: "Flame Shadow",
+						artist: "塞壬唱片-MSR",
+						image: "https://web.hycdn.cn/siren/pic/20221215/fb2e10e1dc62ae835f472c6ac27258b8.jpg",
 					},
 					{
-						id: "1927389937",
-						title: "Bones",
-						artist: "Imagine Dragons",
+						id: "1993340899",
+						title: "Sentenced",
+						artist: "塞壬唱片-MSR",
+						image: "https://web.hycdn.cn/siren/pic/20221102/b332ec19df34c372e56e2c9a7c8588ac.jpg",
 					},
 					{
-						id: "28068202",
-						title: "Carol of the Bells",
-						artist: "Pentatonix",
+						id: "1990154664",
+						title: "Running In The Dark",
+						artist: "塞壬唱片-MSR",
+						image: "https://p1.music.126.net/xxQXfMnMlJyMlydzVsRcag==/109951167974724190.jpg",
+					},
+					{
+						id: "1988460950",
+						title: "Rekindle",
+						artist: "塞壬唱片-MSR",
+						image: "https://web.hycdn.cn/siren/pic/20221012/2f8846f585301f0cd6892db6bf1f3769.jpg",
 					},
 					{
 						id: "1978870845",
@@ -262,7 +271,22 @@ export default {
 						title: "Speed of Light",
 						artist: "塞壬唱片-MSR",
 						image: "https://web.hycdn.cn/siren/pic/20210322/56cbcd1d0093d8ee8ee22bf6d68ab4a6.jpg",
-					}
+					},
+					{
+						id: "464674427",
+						title: "Symphony",
+						artist: "Zara Larsson / Clean Bandit",
+					},
+					{
+						id: "1927389937",
+						title: "Bones",
+						artist: "Imagine Dragons",
+					},
+					{
+						id: "28068202",
+						title: "Carol of the Bells",
+						artist: "Pentatonix",
+					},
 				],
 				Mode: [
 					{
