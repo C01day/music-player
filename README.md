@@ -35,3 +35,9 @@ npm run serve
 ```
 npm run build
 ```
+
+## Leftover problem
+
+不知道歌词列表什么时候渲染完，以至于很难做到一次就计算出精确的高度
+
+Can't get the height of lyric list after rendering just for the first time

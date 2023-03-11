@@ -36,7 +36,7 @@
 						<div :class="['wave-container', currentlyPlaying ? '' : 'paused']">
 							<div v-for="index in 20" :key="index" class="wave-bar"></div>
 						</div>
-						<div class="lyric-container-wrapper">
+						<div class="lyric-container-wrapper" v-if="lyricComplete">
 							<div :class="['lyric-container', currentlyPlaying ? '' : 'paused']" :style="{ transform: 'translateY(' + lyricHeight[Math.max(lyricIndex, 0)] + 'px)'}">
 								<div v-for="(item, index) in lyric" :key="index" :class="['lyric-item', {'isActive': (index==lyricIndex)}]">{{item.text}}</div>
 							</div>
@@ -86,7 +86,8 @@ export default {
 				lyric: [],
 				lyricIndex: -1,
 				lyricHeight: [],
-				lyricHeightUpdateTime: 3,
+				lyricHeightTotalBefore: 0,
+				lyricComplete: false,
 				posterLoad: false,
 				currentlyPlaying: false,
 				isPlaylistActive: false,
@@ -272,11 +273,11 @@ export default {
 						artist: "塞壬唱片-MSR",
 						image: "https://web.hycdn.cn/siren/pic/20210322/56cbcd1d0093d8ee8ee22bf6d68ab4a6.jpg",
 					},
-					{
-						id: "464674427",
-						title: "Symphony",
-						artist: "Zara Larsson / Clean Bandit",
-					},
+					// {
+					// 	id: "464674427",
+					// 	title: "Symphony",
+					// 	artist: "Zara Larsson / Clean Bandit",
+					// },
 					{
 						id: "1927389937",
 						title: "Bones",
@@ -312,9 +313,10 @@ export default {
 			const splitTime = s.split(":").map((item) => Number(item));
 			return splitTime[0] * 60 + splitTime[1];
 		},
-		formatLyric: function(url) {
+		formatLyric: async function(url) {
 			var that = this;
-			this.jsonp(url).then(response => {
+			this.lyricComplete = false;
+			await this.jsonp(url).then(response => {
 				if(response.nolyric) that.lyric = [];
 				else if(response.lyric){
 					var lyric = response.lyric;
@@ -322,7 +324,7 @@ export default {
 					lyric = lyric.map((item) => {
 						var splitLyric = item.split("]");
 						var result = {
-							time: this.timeMillisecond(splitLyric[0].slice(1)),
+							time: that.timeMillisecond(splitLyric[0].slice(1)),
 							text: splitLyric[1]
 						}
 						return result;
@@ -330,12 +332,12 @@ export default {
 					if(lyric[0].text == "") lyric = lyric.slice(1);
 					that.lyric = lyric;
 					that.lyricIndex = -1;
-					that.lyricHeightUpdateTime = 3;
-					// that.$nextTick(function() {
-					// 	console.log(that.lyric)
-					// });
+					that.lyricHeightTotalBefore = 0;
+					that.lyricComplete = true;
+					// console.log("lyric formated")
 				}
 			});
+			await this.updateHeight();
 			// return this.axios.get(url).then(response => response.data);
 		},
 		// 大于i的最小index
@@ -382,27 +384,33 @@ export default {
 		prevSong: function() {
 			this.changeSong(this.prevIndex());
 		},
-		changeSong: function(index, pausePrev = true) {
+		changeSong: async function(index, pausePrev = true) {
+			var that = this;
 			var wasPlaying = this.currentlyPlaying;
 			if (pausePrev == true) {
 				this.stopAudio();
 			}
 			this.currentSong = index;
-
-			var audioFile = "http://music.163.com/song/media/outer/url?id=" + 
-								this.musicPlaylist[this.currentSong].id + ".mp3";
-			this.audio = new Audio(audioFile);
-
-			var lyricFile = "http://music.163.com/api/song/media?id=" + this.musicPlaylist[this.currentSong].id;
-			this.formatLyric(lyricFile);
+			await new Promise((resolve, reject) => {
+				// console.log("get music")
+				var audioFile = "http://music.163.com/song/media/outer/url?id=" + 
+								that.musicPlaylist[that.currentSong].id + ".mp3";
+				that.audio = new Audio(audioFile);
+				resolve();
+			})
+			
+			await new Promise((resolve, reject) => {
+				// console.log("get lyric")
+				var lyricFile = "http://music.163.com/api/song/media?id=" + 
+								that.musicPlaylist[that.currentSong].id;
+				that.formatLyric(lyricFile);
+				resolve();
+			})
 
 			this.posterLoad = false;
 			if(this.musicPlaylist[this.currentSong].image !== undefined) this.posterLoad = true;
 
-			var that = this;
-			this.audio.addEventListener("loadedmetadata", function() {
-				that.trackDuration = Math.round(this.duration);
-			});
+			this.audio.addEventListener("loadedmetadata", this.getTrackDuration);
 			this.audio.addEventListener("ended", this.handleEnded);
 			if (wasPlaying) {
 				this.playPauseAudio();
@@ -430,6 +438,9 @@ export default {
 			this.audio.pause();
 			this.currentlyPlaying = false;
 			clearTimeout(this.checkingCurrentPositionInTrack);
+		},
+		getTrackDuration: function() {
+			this.trackDuration = Math.round(this.audio.duration);
 		},
 		handleEnded: function() {
 			this.changeSong(this.nextIndex());
@@ -466,40 +477,53 @@ export default {
 			this.audio.currentTime = (maxduration * percentage) / 100;
 			this.currentTime = this.audio.currentTime;
 			this.currentProgressBar = this.currentTime / this.trackDuration * 100;
-			this.lyricIndex = this.binarySearch(0, this.lyric.length - 1);
+			if(this.lyric.length!=0){
+				this.lyricIndex = this.binarySearch(0, this.lyric.length - 1);
+			}
 			this.playPauseAudio();
 		},
 		// setItemRef(element) {
 		// 	this.itemRefs.push(element);
 		// },
 		updateHeight: function() {
-			var lyricElement = document.querySelectorAll(".lyric-item");
-			var lyricWrapper = document.querySelector(".lyric-container-wrapper");
-			this.lyricHeight = [];
-			for(var i = 0; i < this.lyric.length; i++){
-				if(i == 0){
-					this.lyricHeight.push(lyricWrapper.getBoundingClientRect().height*0.42);
-					continue;
+			// console.log("update height")
+			var that = this;
+			return new Promise((resolve, reject) => {
+				var lyricElement = document.querySelectorAll(".lyric-item");
+					// setTimeout(
+					// 	function() {
+					// 		that.updateHeight();
+					// 	}.bind(that),
+					// 1000
+					// );
+				var lyricWrapper = document.querySelector(".lyric-container-wrapper");
+				that.lyricHeight = [];
+				for(var i = 0; i < that.lyric.length; i++){
+					if(i == 0){
+						that.lyricHeight.push(lyricWrapper.getBoundingClientRect().height*0.42);
+						continue;
+					}
+					that.lyricHeight.push(that.lyricHeight[i-1] -
+					lyricElement[i-1].getBoundingClientRect().height);
 				}
-				this.lyricHeight.push(this.lyricHeight[i-1] -
-				lyricElement[i-1].getBoundingClientRect().height);
-			}
-			console.log(this.lyricHeight[this.lyricHeight.length-1])
+				console.log("lyricHeight:"+that.lyricHeight[that.lyricHeight.length-1])
+				resolve();
+			})
 		},
 	},
 	mounted() {
 		this.changeSong(this.currentSong, false);
 		this.audio.loop = false;
 	},
-	beforeUpdate() {
-    	// this.itemRefs = [];
-  	},
+	// beforeUpdate() {
+    // 	this.itemRefs = [];
+  	// },
 	updated() {
-		if(this.lyricHeightUpdateTime){
-			this.$nextTick(function(){
+		if(this.lyricHeightTotalBefore != this.lyricHeight[this.lyricHeight.length-1]){
+			this.lyricHeightTotalBefore = this.lyricHeight[this.lyricHeight.length-1]
+			// this.$nextTick(function(){
 				this.updateHeight();
-			})
-			this.lyricHeightUpdateTime --;
+			// })
 		}
   	},
 	watch: {
@@ -512,8 +536,9 @@ export default {
 			this.currentTime = Math.round(this.currentTime);
 		},
 		// lyric: function() {
+		// 	var that = this;
 		// 	this.$nextTick(function(){
-		// 		this.updateHeight();
+		// 		that.updateHeight();
 		// 	})
 		// },
 	},
@@ -527,7 +552,7 @@ export default {
 	},
 	beforeUnmount: function() {
 		this.audio.removeEventListener("ended", this.handleEnded);
-		this.audio.removeEventListener("loadedmetadata", this.handleEnded);
+		this.audio.removeEventListener("loadedmetadata", this.getTrackDuration);
 
 		clearTimeout(this.checkingCurrentPositionInTrack);
 	}
