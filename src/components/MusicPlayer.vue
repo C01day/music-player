@@ -3,7 +3,7 @@
 	<GithubCorner class="github-corner-out"></GithubCorner>
 	<div class="audioPlayer">
 		<GithubCorner class="github-corner-in"></GithubCorner>
-		<a class="nav-icon" @click="isPlaylistActive=!isPlaylistActive" :class="{'isActive': isPlaylistActive}" title="Music List">
+		<a class="nav-icon" @click="isPlaylistActive=!isPlaylistActive,isUserActive=false" :class="{'isActive': isPlaylistActive}" title="Music List">
 				<span></span>
 				<span></span>
 				<span></span>
@@ -14,7 +14,7 @@
 				<p class="artist">{{ item.artist }}</p>
 			</div>
 		</div>
-		<div class="audioPlayerUI" :class="{'isDisabled': isPlaylistActive}">
+		<div class="audioPlayerUI" :class="[{'isDisabled': isPlaylistActive},{'isUserDisabled': isUserActive}]">
 			<div class="albumImage">
 				<transition name="fade" mode="out-in" type='transition' appear>
 					<div :class="['disc-back', currentlyPlaying ? '' : 'paused']" :key="currentSong">
@@ -69,6 +69,20 @@
 				</div>
 			</div>
 		</div>
+		<a class="user-icon" @click="isUserActive=!isUserActive,isPlaylistActive=false" :class="{'isActive': isUserActive}" title="Music List">
+			<span></span>
+			<span></span>
+			<span></span>
+		</a>
+		<div class="userList" :class="{'isActive': isUserActive}">
+			<img src="../assets/img/disc.png" ondragstart="return false;" class="avatar">
+			<el-input v-model="username" placeholder="Please input username" clearable />
+			<el-input v-model="password" type="password" placeholder="Please input password" show-password/>
+			<el-button-group>
+				<el-button color="red" plain>Register</el-button>
+				<el-button color="rgba(0, 0, 0, 0.75)">Login</el-button>
+			</el-button-group>
+		</div>
 	</div>
 </div>
 </template>
@@ -82,6 +96,8 @@ export default {
 	},
 	data() {
 		return {
+				username:"",
+				password: "",
 				audio: "",
 				lyric: [],
 				lyricIndex: -1,
@@ -91,6 +107,7 @@ export default {
 				posterLoad: false,
 				currentlyPlaying: false,
 				isPlaylistActive: false,
+				isUserActive: false,
 				modeIndex: 0,
 				currentSong: 0,
 				currentTime: 0,
@@ -637,6 +654,43 @@ export default {
 					&:nth-child(3) 
 						top 5px
 						transform rotate(-135deg)
+		.user-icon
+			width 15px
+			height 12px
+			position absolute
+			top 1.125rem
+			right 1.5rem
+			transform rotate(0deg)
+			transition 0.25s ease-in-out
+			cursor pointer
+			span
+				display block
+				position absolute
+				height 1.8px
+				width 100%
+				background rgba(0, 0, 0, 0.75)
+				border-radius 6px
+				opacity 1
+				left 0
+				transform rotate(0deg)
+				transition 0.5s ease-in-out
+				&:nth-child(1)
+					top 0px
+				&:nth-child(2)
+					top 5px
+				&:nth-child(3)
+					top 10px
+			&.isActive
+				span
+					&:nth-child(1)
+						top 5px
+						transform rotate(135deg)
+					&:nth-child(2)
+						opacity 0
+						left 60px
+					&:nth-child(3)
+						top 5px
+						transform rotate(-135deg)
 		.audioPlayerList 
 			color rgba(0, 0, 0, 0.75)
 			width 17rem
@@ -670,12 +724,84 @@ export default {
 				&.isActive 
 					border-left-color black
 					padding-left 1rem
+					.title
+						color red
+		.userList
+			color rgba(0, 0, 0, 0.75)
+			width 17rem
+			height 90%
+			transition 0.5s
+			transform translateX(200%)
+			position absolute
+			top 1.125rem
+			right 1.5rem
+			margin-top 1.5rem
+			overflow scroll
+			z-index 10
+			will-change transform
+			display flex
+			flex-direction column
+			align-items center
+			&.isActive
+				transform translateX(0)
+			.avatar
+				width 8rem
+				height 8rem
+				z-index 10
+				object-fit cover
+				object-position 50% 50%
+				border-radius 50%
+				margin 0.8rem auto
+			.el-button-group
+				width 13rem
+				margin-top 1rem
+				.el-button
+					width 50%
+					height 2.4rem
+					font-size 1rem
+					font-family 'Montserrat'
+			.el-input
+				margin-top 1rem
+				border-left 0.1rem solid transparent
+				transition 0.2s
+				width 13rem
+				height 2.7rem
+				font-size 1rem
+				--el-input-icon-color rgba(0, 0, 0, 0.75)
+				--el-input-border-color rgba(0, 0, 0, 0.75)
+				--el-input-placeholder-color rgba(0, 0, 0, 0.75)
+				--el-input-focus-border-color red
+				--el-input-hover-border-color red
+				&:hover
+					padding-left 0.5rem
+					cursor pointer
+				>>> .el-input__inner
+					font-family 'Montserrat'
+					color red
+
+				.title
+					color rgba(0, 0, 0, 1)
+					font-family 'Montserrat'
+					font-size 1.2rem
+					margin 0.2rem 0
+				.artist
+					color rgba(0, 0, 0, 0.5)
+					font-family 'Montserrat'
+					font-size 0.8rem
+					margin 0.2rem 0
+				&.isActive
+					border-left-color black
+					padding-left 1rem
 		.audioPlayerUI 
 			margin-top 1.5rem
 			will-change transform
 			transition 0.5s
 			&.isDisabled 
-				transform scale(0.75) translateX(50%)
+				transform scale(0.8) translateX(40%)
+				filter blur(0.12rem)
+			&.isUserDisabled
+				transform scale(0.8) translateX(-40%)
+				filter blur(0.12rem)
 			.albumDetails 
 				text-align center
 				margin 2rem 0 1.5rem 0
