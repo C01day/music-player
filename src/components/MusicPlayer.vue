@@ -1036,4 +1036,11 @@ export default {
 		.timeAndProgress
 			grid-area c
 			margin auto 0.2rem
+
+@media (max-width: 718px)
+	.audioPlayerUI
+		&.isDisabled 
+			transform scale(0.8) translateX(100%) !important
+		&.isUserDisabled
+			transform scale(0.8) translateX(-100%) !important
 </style>
