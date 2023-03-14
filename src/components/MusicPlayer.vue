@@ -334,7 +334,7 @@ export default {
 			var that = this;
 			this.lyricComplete = false;
 			await this.jsonp(url).then(response => {
-				if(response.nolyric) that.lyric = [];
+				if(response.nolyric) lyric = [];
 				else if(response.lyric){
 					var lyric = response.lyric;
 					lyric = lyric.split("\n");
@@ -347,12 +347,12 @@ export default {
 						return result;
 					});
 					if(lyric[0].text == "") lyric = lyric.slice(1);
-					that.lyric = lyric;
-					that.lyricIndex = -1;
-					that.lyricHeightTotalBefore = 0;
-					that.lyricComplete = true;
-					// console.log("lyric formated")
 				}
+				that.lyric = lyric;
+				that.lyricIndex = -1;
+				that.lyricHeightTotalBefore = 0;
+				that.lyricComplete = true;
+					// console.log("lyric formated")
 			});
 			await this.updateHeight();
 			// return this.axios.get(url).then(response => response.data);
@@ -536,11 +536,11 @@ export default {
     // 	this.itemRefs = [];
   	// },
 	updated() {
-		if(this.lyricHeightTotalBefore != this.lyricHeight[this.lyricHeight.length-1]){
+		if(this.lyric.length!=0 && this.lyricHeightTotalBefore != this.lyricHeight[this.lyricHeight.length-1]){
 			this.lyricHeightTotalBefore = this.lyricHeight[this.lyricHeight.length-1]
-			// this.$nextTick(function(){
+			this.$nextTick(function(){
 				this.updateHeight();
-			// })
+			})
 		}
   	},
 	watch: {
