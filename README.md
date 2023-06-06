@@ -21,9 +21,9 @@
 
 ![DEMO3](src/assets/img/DEMO3.png)
 
-## Project setup
+## Project setup (Do not change the lock file)
 ```
-npm install
+npm ci
 ```
 
 ## Compiles and hot-reloads for development
