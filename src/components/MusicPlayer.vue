@@ -116,24 +116,36 @@ export default {
 				checkingCurrentPositionInTrack: "",
 				// itemRefs: [],
 				musicPlaylist: [
-					// {
-					// 	id: "2042920491",
-					// 	title: "The cure",
-					// 	artist: "塞壬唱片-MSR",
-					// 	image: "https://web.hycdn.cn/siren/pic/20230427/840c552b50612166caa8ee52ac7f6654.jpg",
-					// },
+					{
+						id: "2068111443",
+						title: "Miss You",
+						artist: "塞壬唱片-MSR",
+						image: "https://web.hycdn.cn/siren/pic/20230731/a34ad60a289a701a01b76a09eb81d6cf.jpg",
+					},
+					{
+						id: "2060731820",
+						title: "Mortal Eye",
+						artist: "塞壬唱片-MSR",
+						image: "https://web.hycdn.cn/siren/pic/20230704/9e91da5698c3902a431da7eadb7dde98.jpg",
+					},
+					{
+						id: "2042920491",
+						title: "The cure",
+						artist: "塞壬唱片-MSR",
+						image: "https://web.hycdn.cn/siren/pic/20230427/840c552b50612166caa8ee52ac7f6654.jpg",
+					},
 					{
 						id: "2042872786",
 						title: "Dormant Craving",
 						artist: "塞壬唱片-MSR",
 						image: "https://web.hycdn.cn/siren/pic/20230427/cee3ccefac83068107f90baf7adaa58d.jpg",
 					},
-					// {
-					// 	id: "2042849489",
-					// 	title: "Morning Dew",
-					// 	artist: "塞壬唱片-MSR",
-					// 	image: "https://web.hycdn.cn/siren/pic/20230427/b60c8297f9a8f12a161fbf3524474b60.jpg",
-					// },
+					{
+						id: "2042849489",
+						title: "Morning Dew",
+						artist: "塞壬唱片-MSR",
+						image: "https://web.hycdn.cn/siren/pic/20230427/b60c8297f9a8f12a161fbf3524474b60.jpg",
+					},
 					{
 						id: "2006550948",
 						title: "Flame Shadow",
