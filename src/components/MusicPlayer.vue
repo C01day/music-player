@@ -117,6 +117,11 @@ export default {
 				// itemRefs: [],
 				musicPlaylist: [
 					{
+						id: "1995166023",
+						title: "Fake Love (Orchestral Version)",
+						artist: "MDP",
+					},
+					{
 						id: "2068111443",
 						title: "Miss You",
 						artist: "塞壬唱片-MSR",
