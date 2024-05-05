@@ -122,6 +122,41 @@ export default {
 						artist: "MDP",
 					},
 					{
+						id: "2151230759",
+						title: "Echoism",
+						artist: "塞壬唱片-MSR",
+						image: "https://web.hycdn.cn/siren/pic/20240430/f6d785876d9649428fc4670ade1cff07.jpg",
+					},
+					{
+						id: "2151083898",
+						title: "Broken Sun",
+						artist: "塞壬唱片-MSR",
+						image: "https://web.hycdn.cn/siren/pic/20240430/b95cb91e15e3bf6cf96a625130590e25.jpg",
+					},
+					{
+						id: "2148397627",
+						title: "Grown-up's Paradise",
+						artist: "塞壬唱片-MSR",
+					},
+					{
+						id: "2122534120",
+						title: "浸春芜",
+						artist: "塞壬唱片-MSR",
+						image: "https://web.hycdn.cn/siren/pic/20240131/79dada4ebf5297214b01521ed11d32e1.jpg",
+					},
+					{
+						id: "2102690163",
+						title: "Blade Catcher",
+						artist: "塞壬唱片-MSR",
+						image: "https://web.hycdn.cn/siren/pic/20231204/cd5cda30d228a82535bb2d2f577df16d.jpg",
+					},
+					{
+						id: "2074366900",
+						title: "Beautiful & Lovely",
+						artist: "塞壬唱片-MSR",
+						image: "https://web.hycdn.cn/siren/pic/20230821/86ae65fcf1b72715154a1e9d373d0597.jpg",
+					},
+					{
 						id: "2068111443",
 						title: "Miss You",
 						artist: "塞壬唱片-MSR",
@@ -132,6 +167,12 @@ export default {
 						title: "Mortal Eye",
 						artist: "塞壬唱片-MSR",
 						image: "https://web.hycdn.cn/siren/pic/20230704/9e91da5698c3902a431da7eadb7dde98.jpg",
+					},
+					{
+						id: "2045421500",
+						title: "Control's Wishes",
+						artist: "塞壬唱片-MSR",
+						image: "https://web.hycdn.cn/siren/pic/20230508/8f7be68ffa9dea9da961df0997466617.jpg",
 					},
 					{
 						id: "2042920491",
@@ -237,6 +278,12 @@ export default {
 					},
 					{
 						id: "1893260974",
+						title: "Under Tides",
+						artist: "塞壬唱片-MSR",
+						image: "https://web.hycdn.cn/siren/pic/20211104/93284d47f2c6eae228eccacf43ee29a9.jpg",
+					},
+					{
+						id: "1891941284",
 						title: "Operation Lead Seal",
 						artist: "塞壬唱片-MSR",
 						image: "https://web.hycdn.cn/siren/pic/20211109/e72022facca61c0ddfb0ab82c8e515b7.jpg",
