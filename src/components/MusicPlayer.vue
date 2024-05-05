@@ -96,7 +96,7 @@ export default {
 	},
 	data() {
 		return {
-				username:"",
+				username: "",
 				password: "",
 				audio: "",
 				lyric: [],
@@ -415,10 +415,11 @@ export default {
 		formatLyric: async function(url) {
 			var that = this;
 			this.lyricComplete = false;
+			var lyric = [];
 			await this.jsonp(url).then(response => {
 				if(response.nolyric) lyric = [];
 				else if(response.lyric){
-					var lyric = response.lyric;
+					lyric = response.lyric;
 					lyric = lyric.split("\n");
 					lyric = lyric.map((item) => {
 						var splitLyric = item.split("]");
@@ -429,6 +430,9 @@ export default {
 						return result;
 					});
 					if(lyric[0].text == "") lyric = lyric.slice(1);
+				}
+				else{
+					lyric = [];
 				}
 				that.lyric = lyric;
 				that.lyricIndex = -1;
