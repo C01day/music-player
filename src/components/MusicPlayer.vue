@@ -117,11 +117,6 @@ export default {
 				// itemRefs: [],
 				musicPlaylist: [
 					{
-						id: "1995166023",
-						title: "Fake Love (Orchestral Version)",
-						artist: "MDP",
-					},
-					{
 						id: "2151230759",
 						title: "Echoism",
 						artist: "塞壬唱片-MSR",
@@ -386,6 +381,11 @@ export default {
 						id: "28068202",
 						title: "Carol of the Bells",
 						artist: "Pentatonix",
+					},
+					{
+						id: "1995166023",
+						title: "Fake Love (Orchestral Version)",
+						artist: "MDP",
 					},
 				],
 				Mode: [
